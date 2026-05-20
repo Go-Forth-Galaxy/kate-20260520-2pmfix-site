@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+const repoBase = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "export",
+  trailingSlash: true,
+  images: { unoptimized: true },
+  basePath: isProd ? repoBase : "",
+  assetPrefix: isProd ? repoBase : undefined,
+  reactStrictMode: true,
 };
 
 export default nextConfig;
